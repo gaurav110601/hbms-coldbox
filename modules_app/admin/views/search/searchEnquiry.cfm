@@ -1,0 +1,129 @@
+<cfoutput>
+    
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row ">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a>HBMS</a></li>
+                                <li class="breadcrumb-item"><a>Enquiry</a></li>
+                                <li class="breadcrumb-item active">Search Enquiry</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Search Enquiry</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            
+            <div class="row">
+                <div class="col-12">
+                    #cbmessagebox().renderit()#
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="header-title">Search Enquiry</h4>
+                            <!--- <p class="text-muted mb-0">
+                                DataTables has most features enabled by default, so all you need to do to use it
+                                with your own tables is to call the construction
+                                function:
+                                <code>$().DataTable();</code>. KeyTable provides Excel like cell navigation on
+                                any table. Events (focus, blur, action etc) can be assigned to individual
+                                cells, columns, rows or all cells.
+                            </p> --->
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <!--- <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                                                <option value="?limit=10" 
+                                                <cfif structKeyExists(url, "limit")>
+                                                    <cfif '#url.limit#' EQ 10>
+                                                        selected
+                                                    </cfif>
+                                                </cfif> 
+                                                >10</option>
+                                                <option value="?limit=25"
+                                                <cfif structKeyExists(url, "limit")>
+                                                    <cfif '#url.limit#' EQ 25>
+                                                        selected
+                                                    </cfif>
+                                                </cfif> 
+                                                >25</option>
+                                                <option value="?limit=50" 
+                                                <cfif structKeyExists(url, "limit")>
+                                                    <cfif '#url.limit#' EQ 50>
+                                                        selected
+                                                    </cfif>
+                                                </cfif> 
+                                                >50</option>
+                                                <option value="?limit=100" 
+                                                <cfif structKeyExists(url, "limit")>
+                                                    <cfif '#url.limit#' EQ 100>
+                                                        selected
+                                                    </cfif>
+                                                </cfif> 
+                                                >100</option>
+                                            </select>&nbsp;</label></div>
+                                </div> --->
+                                <div class="col-md-12">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST" action="#event.buildLink( "admin:search.searchEnquiry" )#">
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    <input type="text" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" name="tableSearch">
+                                                </label>
+                                                <button class="btn btn-primary py-0" type="submit"><i class="bi bi-search"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                <thead>
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile Number</th>
+                                    <th>Enquiry Date</th>
+                                    <th>Action</th>
+                                </thead>
+
+                                <tbody>
+                                    <cfif '#prc.searchEnquiryData.recordcount#' != 0>
+                                        <cfloop query="#prc.searchEnquiryData#">
+                                            <tr>
+                                                <td>#prc.sn++#</td>
+                                                <td>#name#</td>
+                                                <td>#email#</td>
+                                                <td>#mobileNumber#</td>
+                                                <td>#dateFormat(date)#</td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="#event.buildLink( "admin:enquiry.viewEnquiry", "id=#id#" )#">View Details</a>
+                                                </td>
+                                            </tr>
+                                        </cfloop>
+                                        <cfelse>
+                                        <tr>
+                                            <td colspan="5" class="text-danger text-center">No data found</td>
+                                        </tr>
+                                    </cfif>
+                                </tbody>
+                            </table>
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div> <!-- end row-->
+
+        </div>
+        <!-- container -->
+
+    </div>
+    <!-- content -->
+</cfoutput>
